@@ -1,0 +1,46 @@
+name: epcvip_notification_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.10.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.15.2
+  firebase_messaging: ^15.2.10
+  url_launcher: ^6.3.2
+  google_fonts: ^4.0.3
+  http: ^1.2.0
+  device_info_plus: ^10.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/banner.jpg
+    - assets/images/logo.png
+    - assets/images/feature1.png
+    - assets/images/feature2.png
+    - assets/images/feature3.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Medium.ttf
