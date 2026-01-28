@@ -13,6 +13,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'ui/home_page.dart';
+import 'services/appsflyer_service.dart';
+import 'debug_logger.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -24,19 +26,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 /// Debug Overlay Log Storage
-class DebugLogger {
-  static final List<String> logs = [];
-
-  static void add(String msg) {
-    final timestamp = DateTime.now().toIso8601String();
-    logs.add("[$timestamp] $msg");
-    debugPrint("[DEBUG] $msg");
-  }
-}
 
 /// MAIN
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize AppsFlyer FIRST (does not depend on Firebase)
+  AppsFlyerService().init();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -219,7 +215,7 @@ Future<void> _manualRegister() async {
         Uri.parse(register_api_endpoint),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "email": "sagar11devadakar@gmail.com",
+          "email": "sagar12devadakar@gmail.com",
           "device_token": token,
           "platform": platform,
           "metadata": metadata,
@@ -285,7 +281,7 @@ Future<void> _manualRegister() async {
   Widget _debugButton() {
     return Positioned(
       right: 20,
-      bottom: 20,
+      bottom: 100,
       child: FloatingActionButton(
         backgroundColor: Colors.black87,
         child: const Icon(Icons.bug_report, color: Colors.white),
@@ -369,7 +365,7 @@ Future<void> _manualRegister() async {
               onPressed: _manualRegister,
             ),
           ),
-          //_debugButton(),
+          _debugButton(),
           // Debug panel should remain last
           _debugPanel(),
         ],

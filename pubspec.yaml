@@ -18,6 +18,7 @@ dependencies:
   google_fonts: ^4.0.3
   http: ^1.2.0
   device_info_plus: ^10.0.0
+  appsflyer_sdk: ^6.15.2
 
 
 dev_dependencies:
